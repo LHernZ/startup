@@ -1,9 +1,13 @@
 - hosts: localhost
   become: yes
+  vars: 
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
   pre_tasks:
     - name: update repositories
       pacman:
         update_cache: yes
         upgrade: yes
   tasks:
+    - include: tasks/ssh.yml
     - include: tasks/zsh-setup.yml
