@@ -1,0 +1,32 @@
+- name: Install ZSH
+  community.general.pacman:
+    name: zsh
+    state: present
+  tags:
+    - install
+    - productivity
+    - dotfiles
+    - zsh
+- name: Change shell to zsh
+  shell: /bin/zsh
+  tags:
+    - install
+    - dotfiles
+    - productivity
+    - zsh
+- name: Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+  tags:
+    - install
+    - productivity
+    - dotfiles
+    - zsh
+- name: Install zsh-autosuggestions
+  ansible.builtin.git:
+    repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+  tags:
+    - install
+    - productivity
+    - dotfiles
+    - zsh

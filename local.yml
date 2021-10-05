@@ -1,0 +1,9 @@
+- hosts: localhost
+  become: yes
+  pre_tasks:
+    - name: update repositories
+      pacman:
+        update_cache: yes
+        upgrade: yes
+  tasks:
+    - include: tasks/zsh-setup.yml
