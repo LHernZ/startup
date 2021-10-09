@@ -19,9 +19,3 @@
   tags:
     - install
     - neovim
-- name: Install vim Plugins
-  shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-  tags:
-    - install
-    - dotfiles
-    - neovim
