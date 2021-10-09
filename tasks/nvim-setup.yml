@@ -19,14 +19,8 @@
   tags:
     - install
     - neovim
-- name: Install Vim-plug
-  shell: curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  tags:
-    - install
-    - dotfiles
-    - neovim
 - name: Install vim Plugins
-  shell: nvim +PlugInstall +qall +silent
+  shell: nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
   tags:
     - install
     - dotfiles
