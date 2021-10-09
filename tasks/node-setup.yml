@@ -1,0 +1,19 @@
+- name: Install nodejs and npm
+  community.general.pacman:
+    name: ["nodejs", "npm"]
+    state: present
+  tags:
+    - install
+    - node
+- name: Install N
+  npm:
+    name: n
+    global: yes
+  tags:
+    - install
+    - node
+- name: Install correct version of node
+  shell: n 14
+  tags:
+    - install
+    - node

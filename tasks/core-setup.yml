@@ -1,0 +1,13 @@
+- name: Install packages
+  community.general.pacman:
+    name: unzip
+    state: present
+- name: Copy SSH Keys
+  ansible.builtin.copy:
+    src: .ssh/id_rsa
+    dest: "/home/lhernz/.ssh/id_rsa"
+    owner: root
+    group: root
+    decrypt: 'yes'
+  tags:
+    - ssh

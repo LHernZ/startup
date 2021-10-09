@@ -15,5 +15,6 @@
   will need to do this after reboot
   will need to add the docker group `sudo groupadd docker` and `sudo usermod -aG docker $USER`
 
-
+* Need to setup stow for dotfiles management first of all, start working on nvim setup to rampup
+  development ASAP
 

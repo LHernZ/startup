@@ -1,5 +1,5 @@
 - hosts: localhost
-  become: yes
+  become: true
   vars: 
     source_key: "./.ssh/id_rsa"
     dest_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
@@ -10,4 +10,8 @@
         upgrade: yes
   tasks:
     - include: tasks/ssh.yml
+    - include: tasks/core-setup.yml
     - include: tasks/zsh-setup.yml
+    - include: tasks/dotfiles.yml
+    - include: tasks/node-setup.yml
+    - include: tasks/nvim-setup.yml
