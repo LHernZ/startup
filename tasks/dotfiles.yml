@@ -5,6 +5,8 @@
   tags:
     - install
     - dotfiles
+  when:
+    - ansible_facts['distribution'] == "Archlinux"
 - name: Install stow (UBUNTU)
   apt:
     name: stow
