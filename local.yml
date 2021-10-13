@@ -12,9 +12,8 @@
       when:
         - ansible_facts['distribution'] == "Archlinux"
     - name: update repositories
-      apt: 
-        update_cache: yes
-        changed_when: False
+      apt: update_cache=yes
+      changed_when: False
       when:
         - ansible_facts['distribution'] == "Ubuntu"
   tasks:
