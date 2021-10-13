@@ -7,6 +7,12 @@
     - productivity
     - dotfiles
     - zsh
+- name: Install ZSH (UBUNTU)
+  apt:
+    name: zsh
+    state: present
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
 - name: Change shell to zsh
   shell: /bin/zsh
   tags:

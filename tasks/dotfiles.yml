@@ -5,6 +5,12 @@
   tags:
     - install
     - dotfiles
+- name: Install stow (UBUNTU)
+  apt:
+    name: stow
+    state: present
+  when:
+    - ansible_facts['distribution'] == "Ubuntu"
 - name: Cloning .dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:LHernZ/.dotfiles.git'
