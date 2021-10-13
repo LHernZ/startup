@@ -19,7 +19,7 @@
     - install
     - ssh
 - name: Set authorized key took from file
-  ansible.posix.authorized_key:
+  authorized_key:
     user: root
     state: present
     key: "{{ lookup('file', '.ssh/id_rsa.pub') }}"
