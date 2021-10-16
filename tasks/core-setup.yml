@@ -1,26 +1,14 @@
-- name: Install packages
-  community.general.pacman:
-    name: unzip
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Archlinux"
-- name: Install packages (UBUNTU)
+- name: Install System Packages 1 (build-essential, cmake, pkg-config, pthread)
   apt:
-    name: unzip
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Ubuntu"
-- name: Create .ssh if not exists
-  ansible.builtin.file:
-    path: ~/.ssh
-    state: directory
-    mode: '0755'
-- name: Copy SSH Keys
-  ansible.builtin.copy:
-    src: .ssh/id_rsa
-    dest: "~/.ssh/id_rsa"
-    owner: root
-    group: root
-    decrypt: 'yes'
+    name: ["build-essential", "cmake", "pkg-config", "libpthread-stubs0-dev"]
   tags:
-    - ssh
+    - install
+    - neovim
+    - core
+- name: Install System Packages 2 (lua, unzip, libtool, libtool-bin, gettext)
+  apt:
+    name: [ "lua5.1", "unzip", "libtool", "libtool-bin", "gettext"]
+  tags:
+    - install
+    - neovim
+    - core

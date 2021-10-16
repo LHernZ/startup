@@ -23,4 +23,27 @@
     user: root
     state: present
     key: "{{ lookup('file', '.ssh/id_rsa.pub') }}"
-
+  tags:
+    - install
+    - ssh
+    - dotfiles
+- name: Create .ssh if not exists
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+    mode: '0755'
+  tags:
+    - install
+    - ssh
+    - init
+- name: Copy SSH Keys
+  ansible.builtin.copy:
+    src: .ssh/id_rsa
+    dest: "~/.ssh/id_rsa"
+    owner: root
+    group: root
+    decrypt: 'yes'
+  tags:
+    - install
+    - ssh
+    - init

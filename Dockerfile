@@ -1,7 +1,7 @@
-FROM archlinux
+FROM ubuntu:focal
 ARG TAGS
 WORKDIR /usr/local/bin
 ARG DEBIAN_FRONTEND=noninteractivee
-RUN pacman -Sy && pacman -S base-devel --noconfirm && pacman -S unzip --noconfirm && pacman -Syu cmake --noconfirm &&  pacman -S --noconfirm git && pacman -S --noconfirm ansible && pacman -S --noconfirm openssh
+RUN apt update && apt install -y software-properties-common && apt-add-repository -y ppa:ansible/ansible && apt update && apt install -y curl git ansible build-essential
 COPY . .
 CMD ["sh", "-c", "ansible-playbook $TAGS local.yml"]
