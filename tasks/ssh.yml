@@ -1,5 +1,5 @@
 - name: Ensure .ssh directory exists.
-  become_user: root
+  become_user: lhernz
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
@@ -9,7 +9,7 @@
     - install
     - ssh
 - name: Install ssh key
-  become_user: root
+  become_user: lhernz
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
@@ -20,7 +20,7 @@
     - ssh
 - name: Set authorized key took from file
   authorized_key:
-    user: root
+    user: lhernz
     state: present
     key: "{{ lookup('file', '.ssh/id_rsa.pub') }}"
   tags:
@@ -40,8 +40,8 @@
   ansible.builtin.copy:
     src: .ssh/id_rsa
     dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-    owner: root
-    group: root
+    owner: lhernz
+    group: lhernz
     decrypt: 'yes'
   tags:
     - install
