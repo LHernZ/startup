@@ -8,7 +8,7 @@
     - dotfiles
     - zsh
 - name: Change shell to zsh
-  shell: /bin/zsh
+  shell: chsh -s $(which zsh)
   tags:
     - install
     - dotfiles
@@ -24,7 +24,7 @@
 - name: Install zsh-autosuggestions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags:
     - install
     - productivity
