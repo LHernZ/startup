@@ -26,3 +26,35 @@
   tags:
     - install
     - tmux
+- name: Install lazydocker
+  shell: curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+  tags:
+    - install
+    - lazydocker
+- name: Install gitkraken
+  apt:
+    deb: https://release.gitkraken.com/linux/gitkraken-amd64.deb
+  tags:
+    - install
+    - gitkraken
+- name: Install lazygit
+  shell: add-apt-repository ppa:lazygit-team/release && apt-get update
+  apt:
+    name: lazygit
+    state: present
+  tags:
+    - install
+    - lazygit
+- name: Install nnn
+  apt:
+    name: nnn
+    state: present
+  tags:
+    - install
+    - nnn
+- name: Intall obsidian
+  apt:
+    deb: https://github.com/obsidianmd/obsidian-releases/releases/download/v0.12.15/obsidian_0.12.15_amd64.deb
+  tags:
+    - install
+    - obsidian
