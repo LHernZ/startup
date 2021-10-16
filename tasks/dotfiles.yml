@@ -8,9 +8,8 @@
 - name: Cloning .dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:LHernZ/.dotfiles.git'
-    dest: "/home/$USER/.dotfiles"
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     update: yes
-    key_file: "/home/$USER/.ssh/id_rsa"
     accept_hostkey: yes
     version: main
   tags: 
