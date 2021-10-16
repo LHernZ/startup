@@ -37,8 +37,12 @@
   tags:
     - install
     - gitkraken
-- name: Install lazygit
+- name: Install lazygit step1
   shell: add-apt-repository ppa:lazygit-team/release && apt-get update
+  tags:
+    - install
+    - lazygit
+- name: Install lazygit step2
   apt:
     name: lazygit
     state: present
