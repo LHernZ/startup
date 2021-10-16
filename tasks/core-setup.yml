@@ -12,3 +12,17 @@
     - install
     - neovim
     - core
+- name: Install fzf
+  apt:
+    name: fzf
+    state: present
+  tags:
+    - install
+    - fzf
+- name: Install tmux
+  apt:
+    name: tmux
+    state: present
+  tags:
+    - install
+    - tmux
