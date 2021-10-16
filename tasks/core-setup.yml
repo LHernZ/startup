@@ -38,7 +38,9 @@
     - install
     - gitkraken
 - name: Install lazygit step1
-  shell: add-apt-repository ppa:lazygit-team/release && apt-get update
+  ansible.builtin.apt_repository:
+    repo: ppa:lazygit-team/release
+    state: present
   tags:
     - install
     - lazygit
