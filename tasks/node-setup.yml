@@ -1,20 +1,10 @@
-- name: Install nodejs and npm
-  community.general.pacman:
+- name: Install nodejs and npm 
+  apt:
     name: ["nodejs", "npm"]
     state: present
-  when:
-    - ansible_facts['distribution'] == "Archlinux"
   tags:
     - install
     - node
-- name: Install nodejs and npm (UBUNTU)
-  apt:
-    pkg:
-      - nodejs
-      - npm
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Ubuntu"
 - name: Install N
   npm:
     name: n

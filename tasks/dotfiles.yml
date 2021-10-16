@@ -1,29 +1,21 @@
 - name: Install stow
-  community.general.pacman:
+  apt: 
     name: stow
     state: present
   tags:
     - install
     - dotfiles
-  when:
-    - ansible_facts['distribution'] == "Archlinux"
-- name: Install stow (UBUNTU)
-  apt:
-    name: stow
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Ubuntu"
 - name: Cloning .dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:LHernZ/.dotfiles.git'
     dest: "{{ lookup ('env', 'HOME') }}/.dotfiles"
     update: yes
-    key_file: /root/.ssh/id_rsa
+    key_file: "{{ lookup ('env', 'HOME') }}/.ssh/id_rsa"
     accept_hostkey: yes
     version: main
   tags: 
-  - install
-  - dotfiles
+    - install
+    - dotfiles
 - name: Stow dotfiles
   shell: cd $HOME/.dotfiles && ./manjaro
   tags:

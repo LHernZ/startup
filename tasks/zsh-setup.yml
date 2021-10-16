@@ -1,5 +1,5 @@
 - name: Install ZSH
-  community.general.pacman:
+  apt: 
     name: zsh
     state: present
   tags:
@@ -7,14 +7,6 @@
     - productivity
     - dotfiles
     - zsh
-  when:
-    - ansible_facts['distribution'] == "Archlinux"
-- name: Install ZSH (UBUNTU)
-  apt:
-    name: zsh
-    state: present
-  when:
-    - ansible_facts['distribution'] == "Ubuntu"
 - name: Change shell to zsh
   shell: /bin/zsh
   tags:
@@ -32,7 +24,7 @@
 - name: Install zsh-autosuggestions
   ansible.builtin.git:
     repo: 'https://github.com/zsh-users/zsh-autosuggestions.git'
-    dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
+    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags:
     - install
     - productivity
