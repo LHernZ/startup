@@ -8,7 +8,7 @@
 - name: Cloning .dotfiles
   ansible.builtin.git:
     repo: 'git@github.com:LHernZ/.dotfiles.git'
-    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
+    dest: "/home/lhernz/.dotfiles"
     update: yes
     accept_hostkey: yes
     version: main
@@ -16,7 +16,7 @@
     - install
     - dotfiles
 - name: Stow dotfiles
-  shell: cd $HOME/.dotfiles && ./manjaro
+  shell: cd /home/lhernz/.dotfiles && ./manjaro
   tags:
     - install
     - dotfiles
