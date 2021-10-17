@@ -1,5 +1,5 @@
 - name: Ensure .ssh directory exists.
-  become_user: lhernz
+  become: no
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
@@ -9,7 +9,7 @@
     - install
     - ssh
 - name: Install ssh key
-  become_user: lhernz
+  become: no
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
@@ -19,6 +19,7 @@
     - install
     - ssh
 - name: Set authorized key took from file
+  become: no
   authorized_key:
     user: lhernz
     state: present
@@ -28,6 +29,7 @@
     - ssh
     - dotfiles
 - name: Create .ssh if not exists
+  become: no
   ansible.builtin.file:
     path: "{{ lookup('env', 'HOME') }}/.ssh"
     state: directory
@@ -37,6 +39,7 @@
     - ssh
     - init
 - name: Copy SSH Keys
+  become: no
   ansible.builtin.copy:
     src: .ssh/id_rsa
     dest: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
