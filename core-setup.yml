@@ -1,0 +1,26 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Install packages
+      apt: name={{ item }}
+      with_items:
+        - cmake
+        - libtool
+        - libtool-bin
+        - ninja-build
+        - gettext
+        - autoconf
+        - automake
+        - g++
+        - pkg-config
+        - unzip
+        - curl
+        - doxygen
+        - lua5.1
+        - python3-pip
+        - luarocks
+        - stow
+        - tmux
+        - fonts-firacode
+        - kitty
+        - golang

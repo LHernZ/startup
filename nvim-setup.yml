@@ -1,0 +1,19 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Clone Neovim
+      ansible.builtin.git:
+        repo: https://github.com/neovim/neovim.git
+        dest: "{{ lookup('env', 'HOME') }}/neovim"
+    - name: Build Neovim
+      community.general.make:
+        chdir: "{{ lookup('env', 'HOME') }}/neovim"
+    - name: Install neovim
+      community.general.make:
+        chdir: "{{ lookup('env', 'HOME') }}/neovim"
+        target: install
+    - name: Neovim plugin development
+      shell: luarocks install luacheck
+    - name: Install Vim-Plug
+      become_user: lhernz
+      shell: curl -fLo "{{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
